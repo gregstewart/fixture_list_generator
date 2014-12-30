@@ -1,5 +1,4 @@
 require "fixture_list_generator/version"
-require "fixture_list_generator/home_or_away"
 
 # All code in the gem is namespaced under this module.
 module FixtureListGenerator

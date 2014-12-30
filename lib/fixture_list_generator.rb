@@ -15,6 +15,7 @@ module FixtureListGenerator
     fixtures
   end
 
+  # merges the possible fixtures with possible matches
   def self.populate_fixtures_from_matches(fixtures, matches)
     while !matches.empty? do
       current_match = matches.pop
@@ -23,6 +24,7 @@ module FixtureListGenerator
     end
   end
 
+  # builds a list of all possible match combinations
   def self.build_team_matches_for_the_season(array_of_teams)
     duplicate_array_of_teams = array_of_teams.dup
     matches = []
@@ -40,6 +42,7 @@ module FixtureListGenerator
     matches
   end
 
+  # builds a skeleton of weekly fixtures and matches to be played
   def self.build_fixtures_collection(array_of_teams, fixtures)
     fixtures.map.with_index do |week, i|
       week["week"] = i+1
@@ -47,6 +50,7 @@ module FixtureListGenerator
     end
   end
 
+  # inserts a match into a slot in a weekly fixture
   def self.set_fixture(current_match, fixtures)
     unless has_match_been_played fixtures, current_match
       fixtures.each do |fixture|
@@ -64,6 +68,7 @@ module FixtureListGenerator
     end
   end
 
+  # determines whether the match combination has already been played this season
   def self.has_match_been_played(fixtures, current_match)
     match_has_been_played = false
     fixtures.each do | fixture |
@@ -79,6 +84,7 @@ module FixtureListGenerator
     match_has_been_played
   end
 
+  # determines whether a team in a match has already played this week
   def self.has_team_played_this_week(matches, current_match)
     team_has_played = false
     matches.each do |match|
